@@ -14,7 +14,7 @@ public class OlxRestController {
     OfferProcessor offerProcessor;
 
     @RequestMapping("/")
-    List<OfferOnList> getOfferList() throws IOException {
+    public List<OfferOnList> getOfferList() throws IOException {
         return offerProcessor.getOffersPage(OfferProcessor.baseURL);
     }
 

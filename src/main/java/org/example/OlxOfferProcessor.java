@@ -13,11 +13,11 @@ public class OlxOfferProcessor implements OfferDetailsProcessor {
 
     public OfferDetails getOfferDetails(String link) throws IOException {
         Document document = Jsoup.connect(link).get();
-        Elements elements = document.getElementsByClass("offer-details__param");
-        String floor = getFloor(elements);
-        String area = getArea(elements);
-        String rooms = getRooms(elements);
-        Integer rentAdditional = getRentAdditional(elements);
+        Elements details = document.getElementsByClass("offer-details__param");
+        String floor = getFloor(details);
+        String area = getArea(details);
+        String rooms = getRooms(details);
+        Integer rentAdditional = getRentAdditional(details);
         String description = getDescription(document);
         List<String> photos = getOfferPhotos(document);
         return OfferDetails.builder()
@@ -35,23 +35,31 @@ public class OlxOfferProcessor implements OfferDetailsProcessor {
     }
 
     private String getRooms(Elements elements) {
-        Element element = elements.get(5).getElementsByClass("offer-details__value").first();
-        return element.text();
+        Element element = elements.get(5);
+        Element rooms = getOfferDetail(element);
+        return rooms.text();
     }
 
     private String getArea(Elements elements) {
-        Element element = elements.get(4).getElementsByClass("offer-details__value").first();
-        return element.text();
+        Element element = elements.get(4);
+        Element area = getOfferDetail(element);
+        return area.text();
     }
 
     private String getFloor(Elements elements) {
-        Element element = elements.get(1).getElementsByClass("offer-details__value").first();
-        return element.text();
+        Element element = elements.get(1);
+        Element floor = getOfferDetail(element);
+        return floor.text();
+    }
+
+    private Element getOfferDetail(Element element) {
+        return element.getElementsByClass("offer-details__value").first();
     }
 
     private Integer getRentAdditional(Elements elements) {
-        Element element = elements.get(6).getElementsByClass("offer-details__value").first();
-        String priceText = element.text();
+        Element element = elements.get(6);
+        Element priceElement = getOfferDetail(element);
+        String priceText = priceElement.text();
         String price = priceText.substring(0, priceText.length() - 3)
                 .replace(" ", "");
         return Integer.parseInt(price);
@@ -66,4 +74,5 @@ public class OlxOfferProcessor implements OfferDetailsProcessor {
         }
         return photos;
     }
+
 }

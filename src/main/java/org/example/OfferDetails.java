@@ -19,5 +19,6 @@ public class OfferDetails {
     private String rooms;
     private List<String> photos;
     private String area;
+    private String location;
 
 }
