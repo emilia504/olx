@@ -1,0 +1,9 @@
+.thumbnail {
+    max-width: 250px;
+    max-height: 150px;
+}
+
+#header h1 {
+    font-size: var(--lumo-font-size-l);
+    margin: 0;
+}

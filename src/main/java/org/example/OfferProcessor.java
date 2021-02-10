@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+@Service
 public class OfferProcessor {
 
     public static String baseURL = "https://www.olx.pl/nieruchomosci/mieszkania/wynajem/lublin/?search%5Bfilter_float_price%3Ato%5D=1300&search%5Border%5D=filter_float_price%3Aasc&search%5Bfilter_enum_floor_select%5D%5B0%5D=floor_0&search%5Bfilter_enum_floor_select%5D%5B1%5D=floor_1&search%5Bfilter_enum_floor_select%5D%5B2%5D=floor_2&search%5Bfilter_enum_floor_select%5D%5B3%5D=floor_3&search%5Bfilter_enum_floor_select%5D%5B4%5D=floor_4&search%5Bfilter_enum_floor_select%5D%5B5%5D=floor_5&search%5Bfilter_enum_floor_select%5D%5B6%5D=floor_6&search%5Bfilter_enum_floor_select%5D%5B7%5D=floor_7&search%5Bfilter_enum_floor_select%5D%5B8%5D=floor_8&search%5Bfilter_enum_floor_select%5D%5B9%5D=floor_9&search%5Bfilter_enum_floor_select%5D%5B10%5D=floor_10&search%5Bfilter_enum_floor_select%5D%5B11%5D=floor_11&search%5Bfilter_enum_rooms%5D%5B0%5D=one&search%5Bfilter_enum_rooms%5D%5B1%5D=two";
